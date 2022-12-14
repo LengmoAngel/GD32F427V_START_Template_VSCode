@@ -1,0 +1,99 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    /*"options": {
+        "cwd": "${workspaceFolder}/build"
+    },*/
+    "options": {
+        "env": {
+          "ARMGCC_DIR": "/usr/local"
+        }
+     },
+    "tasks": [
+        {
+            "label": "_makebuildfolder",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "\"${workspaceFolder}/build\""
+            ],
+            "problemMatcher": [],
+            "group": "none"
+        },
+        {
+            "label": "env",
+            "type": "shell",
+            "command": "env",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "create_Makefile",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "support_files/toMakefile.py"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-j4"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "flash",
+            "type": "shell",
+            "command": "pyocd",
+            "args": [
+                "flash",
+                "--erase",
+                "chip",
+                "--target",
+                "gd32f427vk",
+                "build/GD32F427V_START.elf"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "_makebuildfolder",
+                "env",
+                "make"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,89 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    /*"options": {
+        "cwd": "${workspaceFolder}/build"
+    },*/
+    "options": {
+        "env": {
+          "ARMGCC_DIR": ""
+        }
+     },
+    "tasks": [
+        {
+            "label": "_makebuildfolder",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "${workspaceFolder}\\build",
+                "||",
+                "echo"
+            ],
+            "problemMatcher": [],
+            "group": "none"
+        },
+        {
+            "label": "create_Makefile",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "support_files/toMakefile.py"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-j4"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "flash",
+            "type": "shell",
+            "command": "pyocd",
+            "args": [
+                "flash",
+                "--erase",
+                "chip",
+                "--target",
+                "gd32f427vk",
+                "build/GD32F427V_START.elf"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "_makebuildfolder",
+                "make"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

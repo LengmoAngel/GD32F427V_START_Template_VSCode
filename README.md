@@ -1,0 +1,1 @@
+这是为GD32F427V_START开发板提供的VSCode工程模版

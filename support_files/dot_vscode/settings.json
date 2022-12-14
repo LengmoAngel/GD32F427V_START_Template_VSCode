@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.def": "xml",
+        "*.v": "systemverilog",
+        "board_init.h": "c",
+        "hal_common.h": "c",
+        "clock_init.h": "c",
+        "hal_rcc.h": "c"
+    }
+}

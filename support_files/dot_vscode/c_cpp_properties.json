@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../../../GD32F4xx_Firmware_Library/CMSIS/**",
+                "${workspaceFolder}/../../../GD32F4xx_Firmware_Library/CMSIS/GD/GD32F4xx/**",
+                "${workspaceFolder}/../../../GD32F4xx_Firmware_Library/GD32F4xx_standard_peripheral/**",
+                "${workspaceFolder}/../../Utilities/**"
+            ],
+            "defines": ["GD32F427"]
+            // "macFrameworkPath": [],
+            // "compilerPath": "/usr/local/bin/gcc-7",
+            // "cStandard": "c11",
+            // "cppStandard": "gnu++14",
+            // "intelliSenseMode": "macos-gcc-x64",
+            // "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}
